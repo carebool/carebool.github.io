@@ -213,11 +213,7 @@ ai-models/*.ckpt
 ai-models/checkpoints/
 ai-models/logs/
 
-# Data Management - 민감한 데이터
-data-management/*.csv
-data-management/*.xlsx
-data-management/*.json
-!data-management/sample_*.csv
+# Data Management - 임시 파일만 제외
 data-management/temp/
 data-management/processed/
 

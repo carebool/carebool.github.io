@@ -60,6 +60,9 @@ cover/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+api/media/
+api/static/
+api/staticfiles/
 
 # Flask stuff:
 instance/
@@ -129,6 +132,8 @@ celerybeat.pid
 
 # Environments
 .env
+.env.local
+.env.*.local
 .venv
 env/
 venv/
@@ -165,10 +170,102 @@ cython_debug/
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
-#.idea/
+.idea/
+
+# VS Code
+.vscode/
+*.code-workspace
 
 # Ruff stuff:
 .ruff_cache/
 
 # PyPI configuration file
 .pypirc
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Docker
+deployment/docker/.env
+*.pid
+
+# AI Models - 대용량 모델 파일
+ai-models/*.h5
+ai-models/*.hdf5
+ai-models/*.ckpt
+ai-models/checkpoints/
+ai-models/logs/
+
+# Data Management - 민감한 데이터
+data-management/*.csv
+data-management/*.xlsx
+data-management/*.json
+!data-management/sample_*.csv
+data-management/temp/
+data-management/processed/
+
+# Web - 빌드 및 임시 파일
+web/node_modules/
+web/dist/
+web/build/
+web/.cache/
+web/npm-debug.log*
+web/yarn-debug.log*
+web/yarn-error.log*
+
+# API - Django 관련
+api/migrations/
+!api/migrations/__init__.py
+api/collected_static/
+
+# Deployment - 로컬 설정
+deployment/docker/volumes/
+deployment/nginx/ssl/
+deployment/local/
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Test coverage
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# Documentation build
+docs/_build/
+docs/_static/
+docs/_templates/

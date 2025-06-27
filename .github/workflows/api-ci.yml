@@ -1,0 +1,184 @@
+name: Django API CI/CD
+
+on:
+  push:
+    branches: [ main, dev ]
+    paths:
+      - 'api/**'
+      - '.github/workflows/api-ci.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'api/**'
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: '3.10'
+  MYSQL_DATABASE: test_carebool
+  MYSQL_USER: test_user
+  MYSQL_PASSWORD: test_password
+  MYSQL_ROOT_PASSWORD: root_password
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.MYSQL_ROOT_PASSWORD }}
+          MYSQL_DATABASE: ${{ env.MYSQL_DATABASE }}
+          MYSQL_USER: ${{ env.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ env.MYSQL_PASSWORD }}
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+          cache-dependency-path: 'api/requirements.txt'
+
+      - name: Install dependencies
+        run: |
+          cd api
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install coverage flake8
+
+      - name: Create .env file
+        run: |
+          cd api
+          cat > .env << EOF
+          SECRET_KEY=test-secret-key-for-ci
+          DEBUG=True
+          ALLOWED_HOSTS=localhost,127.0.0.1
+          MYSQL_DATABASE=${{ env.MYSQL_DATABASE }}
+          MYSQL_USER=${{ env.MYSQL_USER }}
+          MYSQL_PASSWORD=${{ env.MYSQL_PASSWORD }}
+          MYSQL_HOST=127.0.0.1
+          MYSQL_PORT=3306
+          EOF
+
+      - name: Run migrations
+        run: |
+          cd api
+          python manage.py migrate --noinput
+
+      - name: Run linting
+        run: |
+          cd api
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+      - name: Run tests with coverage
+        run: |
+          cd api
+          coverage run --source='.' manage.py test
+          coverage report
+          coverage xml
+
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./api/coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
+
+  build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          cd api
+          docker build -t carebool-api:${{ github.sha }} .
+          docker tag carebool-api:${{ github.sha }} carebool-api:latest
+
+      - name: Save Docker image
+        run: |
+          docker save carebool-api:latest > carebool-api.tar
+          
+      - name: Upload Docker image as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: docker-image
+          path: carebool-api.tar
+          retention-days: 7
+
+  security-check:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install safety
+        run: pip install safety
+
+      - name: Run security check
+        run: |
+          cd api
+          safety check -r requirements.txt --json
+        continue-on-error: true
+
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: [test, build]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
+    
+    steps:
+      - name: Deploy notification
+        run: |
+          echo "🚀 Ready to deploy to staging!"
+          echo "Add your deployment steps here (SSH, Docker Swarm, K8s, etc.)"
+          
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [test, build, security-check]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment:
+      name: production
+      url: https://api.carebool.com
+    
+    steps:
+      - name: Deploy notification
+        run: |
+          echo "🚀 Ready to deploy to production!"
+          echo "Add your production deployment steps here"
+          # 예시:
+          # - SSH로 서버 접속
+          # - Docker 이미지 배포
+          # - docker-compose up -d
+          # - 헬스체크 

@@ -1,0 +1,56 @@
+name: Django API Linting
+
+on:
+  pull_request:
+    paths:
+      - 'api/**'
+      - '.github/workflows/api-lint.yml'
+
+jobs:
+  lint:
+    name: Code Quality Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install linting tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 black isort pylint mypy
+
+      - name: Run Black (Code Formatter)
+        run: |
+          cd api
+          black --check --diff .
+        continue-on-error: true
+
+      - name: Run isort (Import Sorter)
+        run: |
+          cd api
+          isort --check-only --diff .
+        continue-on-error: true
+
+      - name: Run Flake8 (Linter)
+        run: |
+          cd api
+          flake8 . --config=.flake8
+        continue-on-error: true
+
+      - name: Run Pylint
+        run: |
+          cd api
+          pylint **/*.py --rcfile=.pylintrc || true
+        continue-on-error: true
+
+      - name: Run MyPy (Type Checker)
+        run: |
+          cd api
+          mypy . --config-file=mypy.ini || true
+        continue-on-error: true 

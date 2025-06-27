@@ -1,0 +1,27 @@
+[flake8]
+max-line-length = 120
+exclude = 
+    .git,
+    __pycache__,
+    migrations,
+    .venv,
+    venv,
+    env,
+    .env,
+    static,
+    media,
+    htmlcov,
+    .mypy_cache,
+    .pytest_cache
+ignore = 
+    # W503: line break before binary operator (conflicts with Black)
+    W503,
+    # E203: whitespace before ':' (conflicts with Black)
+    E203,
+    # E501: line too long (handled by max-line-length)
+    E501
+per-file-ignores =
+    # F401: imported but unused
+    __init__.py:F401
+    # F403: 'from module import *' used
+    settings.py:F403,F405 

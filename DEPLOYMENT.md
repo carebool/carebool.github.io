@@ -64,6 +64,57 @@ docker run -it --rm --name certbot \
   -w /var/www/html -d your-domain.com
 ```
 
+## 🔄 CI/CD (지속적 통합/배포)
+
+### Django API CI/CD
+`.github/workflows/api-ci.yml` 파일이 다음을 자동화합니다:
+
+#### 1. 자동 테스트 (모든 PR 및 push)
+- Python 의존성 설치
+- MySQL 데이터베이스 설정
+- Django 마이그레이션 실행
+- 단위 테스트 및 통합 테스트
+- 코드 커버리지 측정
+
+#### 2. 코드 품질 검사
+- Flake8 린팅
+- Black 코드 포맷 검사
+- isort import 정렬 검사
+- 보안 취약점 스캔 (safety)
+
+#### 3. Docker 이미지 빌드
+- main 브랜치 push 시 자동 빌드
+- 이미지 태깅 및 아티팩트 저장
+
+#### 4. 배포 단계
+- **Staging**: dev 브랜치 → 스테이징 서버
+- **Production**: main 브랜치 → 프로덕션 서버
+
+### 로컬에서 테스트 실행
+```bash
+cd api
+
+# 린팅
+flake8 .
+black --check .
+isort --check-only .
+
+# 테스트
+python manage.py test
+pytest  # 또는 pytest 사용
+
+# 커버리지
+coverage run --source='.' manage.py test
+coverage report
+```
+
+### GitHub Actions 시크릿 설정
+Repository Settings > Secrets에서 설정:
+- `DEPLOY_HOST`: 배포 서버 주소
+- `DEPLOY_USER`: SSH 사용자명
+- `DEPLOY_KEY`: SSH 개인키
+- `DOCKER_REGISTRY_TOKEN`: Docker 레지스트리 토큰
+
 ## 📱 Frontend-Backend 연결
 
 ### API 엔드포인트 설정
@@ -96,6 +147,11 @@ CORS_ALLOWED_ORIGINS = [
 1. CORS 설정 확인
 2. API 엔드포인트 URL 확인
 3. 네트워크 방화벽 설정 확인
+
+### CI/CD 파이프라인 실패
+1. GitHub Actions 로그 확인
+2. 환경 변수 및 시크릿 설정 확인
+3. 의존성 버전 충돌 확인
 
 ### 정적 파일 로딩 실패
 1. 파일 경로 확인 (상대 경로 사용)

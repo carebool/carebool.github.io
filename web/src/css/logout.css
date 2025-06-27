@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', sans-serif;
+    background-color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    z-index: 1000;
+    padding-top: 0; /* 0이면 진짜 맨 위에 붙음 */
+}
+
+.modal {
+    background-color: #2d3748;
+    border-radius: 12px;
+    padding: 0;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+}
+
+.modal-header {
+    background-color: #2d3748;
+    color: white;
+    padding: 20px 24px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 1px solid #4a5568;
+}
+
+.modal-body {
+    background-color: #2d3748;
+    color: white;
+    padding: 16px 24px 24px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.modal-footer {
+    background-color: #2d3748;
+    padding: 0 24px 24px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.confirm-button {
+    background-color: #4299e1;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.confirm-button:hover {
+    background-color: #3182ce;
+}
+
+.confirm-button:active {
+    background-color: #2c5aa0;
+    transform: translateY(1px);
+}
+
+/* 모바일 반응형 */
+@media (max-width: 480px) {
+    .modal {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    .modal-header {
+        padding: 16px 20px 12px;
+        font-size: 15px;
+    }
+    
+    .modal-body {
+        padding: 12px 20px 20px;
+        font-size: 13px;
+    }
+    
+    .modal-footer {
+        padding: 0 20px 20px;
+    }
+} 

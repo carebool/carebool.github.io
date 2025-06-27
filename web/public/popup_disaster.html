@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CAREBOOL - 재난 정보 내역</title>
+    <link rel="stylesheet" href="../src/css/popup_disaster.css">
+</head>
+<body>
+    <!-- 로딩 화면 -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <nav class="nav">
+                <a href="#" class="logo">CARE<span class="highlight">BOOL</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">화재 상세</a></li>
+                    <li><a href="#">보험 상세</a></li>
+                    <li><a href="#">프로토콜</a></li>
+                    <li><a href="#">이용 안내</a></li>
+                </ul>
+                <div class="user-menu">
+                    <a href="#" class="logout-btn">로그인</a>
+                    <a href="#" class="logout-btn">회원가입</a>
+                    <a href="#" class="mypage-btn">마이페이지</a>
+                    <a href="#" class="zoom-in">확대</a>
+                    <a href="#" class="zoom-out">축소</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <h1 class="page-title">재난 정보 내역</h1>
+            <p class="page-description">
+                최신 재난 발생 현황과 상황을 실시간으로 확인하고 대응 방안을 검토하실 수 있습니다.
+            </p>
+
+            <!-- 긴급 알림 -->
+            <div class="alert-box">
+                <h3>🚨 긴급 재난 알림</h3>
+                <p>현재 진행 중인 화재으로 인해 각별한 주의가 필요합니다. 외출 시 안전에 유의하시기 바랍니다.</p>
+            </div>
+
+            <!-- 안내 정보 -->
+            <div class="info-box">
+                <h3>📋 재난 정보 안내</h3>
+                <p>아래 표는 최근 발생한 재난 정보입니다. 재난의 규모와 상태를 확인하여 적절한 대비책을 마련하시기 바랍니다.</p>
+            </div>
+            
+            <!-- 재난 정보 테이블 섹션 -->
+            <div class="section">
+                <table class="disaster-table">
+                    <thead>
+                        <tr>
+                            <th>재난 유형</th>
+                            <th>규모</th>
+                            <th>상태</th>
+                            <th>발생시각</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>아파트 화재</td>
+                            <td>건물 5층 전체</td>
+                            <td><span class="severity-critical">위험</span></td>
+                            <td>2025-06-01 04:10</td>
+                        </tr>
+                        <tr>
+                            <td>공장 화재</td>
+                            <td>공장 2동</td>
+                            <td><span class="status-ongoing">진행중</span></td>
+                            <td>2025-06-20 09:20</td>
+                        </tr>
+                        <tr>
+                            <td>산불</td>
+                            <td>약 1.2ha</td>
+                            <td><span class="severity-critical">위험</span></td>
+                            <td>2025-05-14 13:45</td>
+                        </tr>
+                        <tr>
+                            <td>주택 화재</td>
+                            <td>2가구</td>
+                            <td><span class="status-completed">종료</span></td>
+                            <td>2025-04-25 18:50</td>
+                        </tr>
+                        <tr>
+                            <td>차량 화재</td>
+                            <td>승용차 1대</td>
+                            <td><span class="severity-moderate">주의</span></td>
+                            <td>2025-06-23 11:35</td>
+                        </tr>
+                        <tr>
+                            <td>상가 화재</td>
+                            <td>상점 3곳</td>
+                            <td><span class="status-completed">종료</span></td>
+                            <td>2025-03-18 03:15</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+                <!-- 버튼 그룹 -->
+                <div class="button-group">
+                    <button class="btn" onclick="handleGoBack()">이전으로</button>
+                </div>
+            </div>
+
+            <!-- 푸터 -->
+            <div class="copyright">COPYRIGHT © 공모자들. ALL RIGHTS RESERVED.</div>
+        </div>
+    </div>
+    
+    <!-- 스크립트 -->
+    <script src="../src/js/popup_disaster.js"></script>
+</body>
+</html>

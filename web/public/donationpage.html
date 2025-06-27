@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CAREBOOL - 화재 피해 지원 모금</title>
+    <link rel="stylesheet" href="../src/css/donationpage.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <nav class="nav">
+                <a href="#" class="logo">CARE<span class="highlight">BOOL</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">화재 상세</a></li>
+                    <li><a href="#">보험 상세</a></li>
+                    <li><a href="#">프로토콜</a></li>
+                    <li><a href="#">이용 안내</a></li>
+                </ul>
+                <div class="user-menu">
+                    <a href="#" class="login-icon">로그인</a>
+                    <a href="#" class="signup-icon">회원가입</a>
+                    <a href="#" class="search-icon">마이페이지</a>
+                    <a href="#" class="search-icon">확대</a>
+                    <a href="#" class="search-icon">축소</a>
+                </div>
+            </nav>
+        </header>
+
+        <div class="popup-overlay">
+            <div class="popup-container">
+                <button class="close-btn" onclick="closePopup()">✕</button>
+                
+                <div class="image-section">
+                    <div class="fire-animation"></div>
+                    <div class="smoke-effect"></div>
+                    <div class="building-silhouette"></div>
+                    <div class="person-silhouette"></div>
+                    <div class="title-overlay">
+                        <h1>도움의 손길을</h1>
+                        <p>화재 피해 복구 지원 캠페인</p>
+                    </div>
+                    <div class="carebool-badge">
+                        CARE<span class="highlight">BOOL</span>
+                    </div>
+                </div>
+                
+                <div class="info-section">
+                    <div class="progress-info">
+                        <div class="target-info">목표액 5,000,000 원 중 20% 달성</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="amount-raised">1,000,000원</div>
+                    </div>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-number">20</span>
+                            <span class="stat-label">명 후원</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">10</span>
+                            <span class="stat-label">일 남음</span>
+                        </div>
+                    </div>
+                    
+                    <div class="campaign-details">
+                        ※ 이 후원은 2025-07-16에 종료됩니다.<br>
+                        ※ 우리사업결과는 모금 종료 후 12개월 이내에 제공됩니다.<br>
+                        ※ 모든 기부금은 투명하게 관리되며 사용내역을 공개합니다.
+                    </div>
+                    
+                    <button class="donate-btn" onclick="donate()">기부하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 스크립트 -->
+    <script src="../src/js/donationpage.js"></script>
+</body>
+</html>

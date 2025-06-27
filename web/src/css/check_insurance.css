@@ -1,0 +1,584 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    min-height: 100vh;
+    background: #f8fafc;
+}
+
+.container {
+    min-height: 100vh;
+    background: white;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: #2B5797;
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    height: 70px;
+}
+
+.nav {
+    position: relative;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.logo {
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    transform: translateY(-50%);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.logo .highlight {
+    color: #e53e3e;
+}
+
+.nav-links {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 60px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 4px;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.nav-links a.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.user-menu {
+    position: absolute;
+    top: 50%;
+    right: -50px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-menu a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 10px;
+    border-radius: 4px;
+    transition: background 0.2s ease, color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.user-menu a:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.main-content {
+    padding: 100px 40px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #ffffff;
+}
+
+/* 탭 스타일 */
+.tab-container {
+    margin-bottom: 0;
+    display: flex;
+    gap: 0;
+}
+
+.tab {
+    background: #94a3b8;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 8px 8px 0 0;
+}
+
+.tab.active {
+    background: #4285f4;
+    font-weight: 600;
+}
+
+.tab:hover:not(.active) {
+    background: #3367d6;
+}
+
+/* 컨텐츠 패널 스타일 */
+.content-panel {
+    background: white;
+    border-radius: 0 12px 12px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    padding: 40px;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 40px;
+}
+
+/* 5:5 비율 보장을 위한 스타일 */
+.insurance-finder-container {
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
+    height: 700px; /* 고정 높이 설정 */
+}
+
+.form-section {
+    width: 50%; /* 정확히 50% */
+    flex: none; /* flex 제거하고 고정 크기 사용 */
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.results-section {
+    width: 50%; /* 정확히 50% */
+    flex: none; /* flex 제거하고 고정 크기 사용 */
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.form-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.form-group {
+    margin-bottom: 16px;
+    flex-shrink: 0;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #374151;
+    font-size: 13px;
+}
+
+.form-label .required {
+    color: #e53e3e;
+    margin-left: 2px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 13px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #4285f4;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+}
+
+.form-note {
+    font-size: 10px;
+    color: #6b7280;
+    margin-top: 5px;
+    line-height: 1.3;
+}
+
+.radio-group {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.radio-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* 아래 한 줄로 카드 모양 */
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: #f1f5f9;
+    border: 2px solid #e2e8f0;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    font-weight: 500;
+}
+
+.radio-item input[type="radio"] {
+    /* 실제 라디오버튼 숨김 */
+    appearance: none;
+    -webkit-appearance: none;
+    width: 0; height: 0;
+    margin: 0;
+    position: absolute;
+    left: 0; top: 0;
+    opacity: 0;
+}
+
+.radio-item label {
+    cursor: pointer;
+    color: #374151;
+    padding-left: 0;
+    transition: color 0.2s;
+}
+
+/* 선택됐을 때(checked) 카드 스타일 */
+.radio-item input[type="radio"]:checked + label {
+    color: #4285f4;
+    font-weight: 700;
+}
+.radio-item input[type="radio"]:checked ~ .radio-item {
+    border: 2px solid #4285f4;
+    background: #e8f1fc;
+}
+
+/* 카드에 선택 효과 주기 */
+.radio-item input[type="radio"]:checked + label,
+.radio-item input[type="radio"]:checked ~ label {
+    color: #4285f4;
+}
+
+/* .radio-item 전체에 border 색상 바꾸기 (더 강하게) */
+.radio-item input[type="radio"]:checked ~ .radio-item,
+.radio-item:has(input[type="radio"]:checked) {
+    border-color: #4285f4;
+    background: #e8f1fc;
+}
+
+.search-btn {
+    width: 100%;
+    background: #4285f4;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+.search-btn:hover {
+    background: #3367d6;
+}
+
+.results-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.insurance-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+/* 스크롤바 스타일링 */
+.insurance-grid::-webkit-scrollbar {
+    width: 6px;
+}
+
+.insurance-grid::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.insurance-grid::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.insurance-grid::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+.insurance-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 14px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    height: fit-content;
+}
+
+.insurance-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.insurance-card.recommended {
+    border: 2px solid #4285f4;
+    background: #f0f9ff;
+}
+
+.insurance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.insurance-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 3px;
+    line-height: 1.3;
+}
+
+.insurance-company {
+    font-size: 10px;
+    color: #6b7280;
+}
+
+.recommended-badge {
+    background: #4285f4;
+    color: white;
+    font-size: 9px;
+    padding: 3px 6px;
+    border-radius: 10px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.insurance-description {
+    font-size: 10px;
+    color: #4b5563;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+.insurance-features {
+    margin-bottom: 8px;
+}
+
+.feature-item {
+    font-size: 9px;
+    color: #6b7280;
+    margin-bottom: 2px;
+    line-height: 1.3;
+}
+
+.feature-item::before {
+    content: "• ";
+    color: #4285f4;
+    font-weight: bold;
+}
+
+.insurance-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.insurance-price {
+    font-size: 12px;
+    font-weight: 600;
+    color: #e53e3e;
+}
+
+.detail-btn {
+    background: #4285f4;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    font-size: 9px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.detail-btn:hover {
+    background: #3367d6;
+}
+
+.copyright {
+    text-align: center;
+    color: #718096;
+    font-size: 12px;
+    margin-top: 40px;
+    padding: 20px 0;
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+    .insurance-finder-container {
+        flex-direction: column;
+        gap: 20px;
+        height: auto;
+    }
+    
+    .form-section,
+    .results-section {
+        width: 100%;
+        height: auto;
+        min-height: 400px;
+    }
+    
+    .nav-links {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .logo {
+        left: 20px;
+        font-size: 18px;
+    }
+    
+    .user-menu {
+        right: 20px;
+        gap: 10px;
+    }
+    
+    .user-menu a {
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+    
+    .main-content {
+        padding: 80px 20px 40px;
+    }
+    
+    .content-panel {
+        padding: 20px;
+    }
+    
+    .page-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+    
+    .tab-container {
+        flex-direction: column;
+        gap: 2px;
+    }
+    
+    .tab {
+        border-radius: 8px;
+        margin-bottom: 2px;
+    }
+    
+    .tab.active {
+        border-radius: 8px;
+    }
+    
+    .content-panel {
+        border-radius: 12px;
+    }
+    
+    .insurance-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-section,
+    .results-section {
+        padding: 15px;
+    }
+    
+    .insurance-finder-container {
+        gap: 15px;
+    }
+}
+
+/* 애니메이션 */
+.main-content {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.insurance-card {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(10px); }
+    to { opacity: 1; transform: translateX(0); }
+} 

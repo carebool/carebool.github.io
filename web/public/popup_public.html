@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CAREBOOL - 공공 보험 상세</title>
+    <link rel="stylesheet" href="../src/css/popup_public.css">
+</head>
+<body>
+    <!-- 로딩 화면 -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <nav class="nav">
+                <a href="#" class="logo">CARE<span class="highlight">BOOL</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">화재 상세</a></li>
+                    <li><a href="#">보험 상세</a></li>
+                    <li><a href="#">프로토콜</a></li>
+                    <li><a href="#">이용 안내</a></li>
+                </ul>
+                <div class="user-menu">
+                    <a href="#" class="logout-btn">로그인</a>
+                    <a href="#" class="logout-btn">회원가입</a>
+                    <a href="#" class="mypage-btn">마이페이지</a>
+                    <a href="#" class="zoom-in">확대</a>
+                    <a href="#" class="zoom-out">축소</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <h1 class="page-title">공공 보험 내역</h1>
+            <p class="page-description">
+                귀하의 위치 정보를 활용하여 정부에서 제공하는 공공 보험 관련 정보를 확인하고 관리하실 수 있습니다.
+            </p>
+
+            <!-- 안내 정보 -->
+            <div class="info-box">
+                <h3>📋 공공 보험 안내</h3>
+                <p>아래 표는 정부에서 제공하는 공공 보험 관련 정보입니다. 각 보험별 보장 범위와 정부 지원 비율을 참고하시기 바랍니다.
+
+
+            </div>
+            
+            <!-- 공공 보험 테이블 섹션 -->
+            <div class="section">
+                
+                <table class="insurance-table">
+                    <thead>
+                        <tr>
+                            <th>보험 이름</th>
+                            <th>보험 유형</th>
+                            <th>정부 지원</th>
+                            <th>지원 사이트</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>재난안전24</td>
+                            <td>건강</td>
+                            <td>70%이상</td>
+                            <td><a href="https://nhis.or.kr" target="_blank">nhis.or.kr</a></td>
+                        </tr>
+                        <tr>
+                            <td>00시</td>
+                            <td>실업</td>
+                            <td>100%</td>
+                            <td><a href="https://ei.go.kr" target="_blank">ei.go.kr</a></td>
+                        </tr>
+                        <tr>
+                            <td>산재보험</td>
+                            <td>산업재해</td>
+                            <td>100%</td>
+                            <td><a href="https://kcomwel.or.kr" target="_blank">kcomwel.or.kr</a></td>
+                        </tr>
+                        <tr>
+                            <td>재난안전24</td>
+                            <td>건강</td>
+                            <td>70%이상</td>
+                            <td><a href="https://nhis.or.kr" target="_blank">nhis.or.kr</a></td>
+                        </tr>
+                        <tr>
+                            <td>00시</td>
+                            <td>실업</td>
+                            <td>100%</td>
+                            <td><a href="https://ei.go.kr" target="_blank">ei.go.kr</a></td>
+                        </tr>
+                        <tr>
+                            <td>산재보험</td>
+                            <td>산업재해</td>
+                            <td>100%</td>
+                            <td><a href="https://kcomwel.or.kr" target="_blank">kcomwel.or.kr</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- 버튼 그룹 -->
+                <div class="button-group">
+                    <button class="btn" onclick="handleGoBack()">이전으로</button>
+                </div>
+            </div>
+
+            <!-- 푸터 -->
+            <div class="copyright">COPYRIGHT © 공모자들. ALL RIGHTS RESERVED.</div>
+        </div>
+    </div>
+    
+    <!-- 스크립트 -->
+    <script src="../src/js/popup_public.js"></script>
+</body>
+</html>

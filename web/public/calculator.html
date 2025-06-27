@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CAREBOOL - 내 보험료 계산</title>
+    <link rel="stylesheet" href="../src/css/calculator.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <nav class="nav">
+                <a href="#" class="logo">CARE<span class="highlight">BOOL</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">화재 상세</a></li>
+                    <li><a href="#" class="active">보험 상세</a></li>
+                    <li><a href="#">프로토콜</a></li>
+                    <li><a href="#">이용 안내</a></li>
+                </ul>
+                <div class="user-menu">
+                    <a href="#">로그인</a>
+                    <a href="#">회원가입</a>
+                    <a href="#">마이페이지</a>
+                    <a href="#">확대</a>
+                    <a href="#">축소</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <!-- 탭 메뉴 -->
+            <div class="tab-container">
+                <button class="tab" onclick="switchTab(0)">공공보험</button>
+                <button class="tab active" onclick="switchTab(1)">내 보험료 계산</button>
+                <button class="tab" onclick="switchTab(2)">맞춤 보험료 확인</button>
+            </div>
+
+            <!-- 컨텐츠 패널 -->
+            <div class="content-panel">
+                <!-- 페이지 제목 -->
+                <h1 class="page-title">나의 보험료 계산하기</h1>
+
+                <div class="calculator-container">
+                    <!-- 입력 폼 섹션 -->
+                    <div class="form-section">
+                        <h2 class="form-title">보험료 관련 정보 입력하기</h2>
+                        
+                        <div class="form-group">
+                        <label class="form-label"><span class="required">*</span> 나이</label>
+                        <input type="number" class="form-input" id="age" placeholder="나이를 입력하세요" value="35">
+                        <div class="form-note">
+                            * 만 나이(현재 기준)로 숫자만 입력해주세요.<br>
+                            * 보험상품에 따라 가입 가능한 연령이 다를 수 있습니다.<br>
+                            * 일부 상품은 특정 연령(예: 15~70세)만 가입 가능합니다.
+                        </div>
+                    </div>
+
+                        <div class="form-group">
+                            <label class="form-label"><span class="required">*</span> 보험 금액 (만원)</label>
+                            <input type="number" class="form-input" id="amount" placeholder="보험 금액을 입력하세요" value="10000">
+                            <div class="form-note">
+                            * 보험금액은 '만원' 단위로 숫자만 입력해주세요.<br>
+                            * 보험사 및 상품별로 가입 가능한 금액 한도가 다를 수 있습니다.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"><span class="required">*</span> 보험 기간(년)</label>
+                            <input type="number" class="form-input" id="period" placeholder="보험 기간을 입력하세요" value="1">
+                            <div class="form-note">
+                            * 보험기간은 1년, 3년, 5년, 10년 등 상품별로 선택 가능합니다.<br>
+                            * 보험기간이 길어질수록 월 보험료가 높아질 수 있습니다.<br>
+                            * 보험사와 상품에 따라 가입 가능한 최소/최대 기간이 다를 수 있습니다.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"><span class="required">*</span> 보험 유형</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="public" name="insurance_type" value="public" checked>
+                                    <label for="public">공공보험</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="private" name="insurance_type" value="private">
+                                    <label for="private">민간보험</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="calculate-btn" onclick="calculatePremium()">보험료 계산</button>
+                    </div>
+
+                    <!-- 결과 섹션 -->
+                    <div class="result-section">
+                        <h2 class="result-title">000 님의 예상 보험료는 다음과 같습니다.</h2>
+                        
+                        <div class="result-card">
+                            <div class="result-info">
+                                <span class="result-label">입력 요약 정보 카드</span>
+                                <span class="result-value"></span>
+                            </div>
+                            <div class="result-info">
+                                <span class="result-label">나이: </span>
+                                <span class="result-value" id="result-age">35세</span>
+                            </div>
+                            <div class="result-info">
+                                <span class="result-label">보험금액: </span>
+                                <span class="result-value" id="result-amount">1억 원</span>
+                            </div>
+                            <div class="result-info">
+                                <span class="result-label">보험기간: </span>
+                                <span class="result-value" id="result-period">1년</span>
+                            </div>
+                            <div class="result-info">
+                                <span class="result-label">보험유형: </span>
+                                <span class="result-value" id="result-type">일반 화재보험</span>
+                            </div>
+                        </div>
+
+                        <div class="premium-result">
+                            <div class="premium-label">보험료 결과</div>
+                            <div class="premium-amount" id="premium-amount">월 11,400원</div>
+                            <div class="premium-note">(상설회계 기준 / 2025년 6월 요율 기준)</div>
+                        </div>
+
+                        <div class="coverage-info">
+                            <div class="coverage-text">"비슷한 조건 대비 평균보다 7% 저렴합니다."</div>
+                        </div>
+
+                        <div class="additional-info">
+                            <strong>주요 보장 내용:</strong>
+                            <ul>
+                                <li>화재 피해 : 최대 1억원 보장</li>
+                                <li>전기화재, 연기 피해 포함</li>
+                                <li>1인 가구 특화 혜택 적용</li>
+                            </ul>
+                        </div>
+
+                        <div class="disclaimer">
+                            • 보험료는 보험사, 추가 혜택, 자산 금액에 따라 달라질 수 있습니다.<br>
+                            • 정확한 금액은 실제 가입 시 보험사에 따라 상이할 수 있습니다.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="copyright">COPYRIGHT © 공모자들. ALL RIGHTS RESERVED.</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 스크립트 -->
+    <script src="../src/js/calculator.js"></script>
+</body>
+</html>

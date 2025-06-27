@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CAREBOOL - 최신 뉴스</title>
+    <link rel="stylesheet" href="../src/css/popup_protocol.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <nav class="nav">
+                <a href="#" class="logo">CARE<span class="highlight">BOOL</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">화재 상세</a></li>
+                    <li><a href="#">보험 상세</a></li>
+                    <li><a href="#">프로토콜</a></li>
+                    <li><a href="#">이용 안내</a></li>
+                </ul>
+                <div class="user-menu">
+                    <a href="#" class="login-icon">로그인</a>
+                    <a href="#" class="signup-icon">회원가입</a>
+                    <a href="#" class="search-icon">마이페이지</a>
+                    <a href="#" class="search-icon">확대</a>
+                    <a href="#" class="search-icon">축소</a>
+                </div>
+            </nav>
+        </header>
+
+        <div class="popup-overlay" id="popupOverlay">
+            <div class="popup-container">
+                <!-- 팝업 헤더 -->
+                <div class="popup-header">
+                    <button class="close-btn" onclick="closePopup()">&times;</button>
+                    <div class="emergency-icon">🚨</div>
+                    <h1 class="popup-title">CAREBOOL 긴급 알림</h1>
+                    <p class="popup-subtitle">실시간 재난 정보 및 안전 행동 요령</p>
+                </div>
+
+                <!-- 팝업 콘텐츠 -->
+                <div class="popup-content">
+                    <!-- 경보 레벨 -->
+                    <div class="alert-level critical">🔴 심각 단계 - 즉시 대피</div>
+
+                    <!-- 재난 정보 -->
+                    <div class="disaster-info">
+                        <div class="disaster-type">
+                            <div class="disaster-icon">🔥</div>
+                            <h2 class="disaster-title">대형 화재 발생</h2>
+                        </div>
+                        
+                        <div class="disaster-details">
+                            <div class="detail-item">
+                                <span class="detail-label">발생시간:</span>
+                                <span class="detail-value">2025년 6월 24일 14:32</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">발생지역:</span>
+                                <span class="detail-value">서울특별시 강남구 테헤란로 일대</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">현재상황:</span>
+                                <span class="detail-value">대형 상업시설에서 화재 발생, 소방당국 진압 작업 중</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">영향범위:</span>
+                                <span class="detail-value">반경 500m 이내 대피 권고</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 위치 정보 -->
+                    <div class="location-info">
+                        <h3 class="location-title">
+                            📍 귀하의 현재 위치 기준 정보
+                        </h3>
+                        <div class="location-details">
+                            현재 위치에서 재난 발생지역까지 약 2.3km 거리입니다.<br>
+                            바람 방향을 고려할 때 연기 확산 가능 지역에 포함됩니다.
+                        </div>
+                    </div>
+
+                    <!-- 행동 요령 -->
+                    <div class="action-steps">
+                        <h3 class="steps-title">
+                            ⚡ 즉시 행동 요령
+                        </h3>
+                        <ul class="step-list">
+                            <li class="step-item">
+                                <div class="step-number">1</div>
+                                <div class="step-text">창문과 문을 모두 닫고 외부 공기 차단</div>
+                            </li>
+                            <li class="step-item">
+                                <div class="step-number">2</div>
+                                <div class="step-text">젖은 수건으로 코와 입을 막고 낮은 자세 유지</div>
+                            </li>
+                            <li class="step-item">
+                                <div class="step-number">3</div>
+                                <div class="step-text">대피 경로 확인 후 안전한 장소로 신속히 이동</div>
+                            </li>
+                            <li class="step-item">
+                                <div class="step-number">4</div>
+                                <div class="step-text">119 신고 및 가족에게 안전 상황 전파</div>
+                            </li>
+                            <li class="step-item">
+                                <div class="step-number">5</div>
+                                <div class="step-text">관련 기관의 추가 안내사항 지속 확인</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 긴급 연락처 -->
+                    <div class="emergency-contacts">
+                        <h3 class="contacts-title">
+                            📞 긴급 연락처
+                        </h3>
+                        <div class="contact-list">
+                            <div class="contact-item" onclick="callEmergency('119')">
+                                <span class="contact-name">소방서</span>
+                                <span class="contact-number">119</span>
+                            </div>
+                            <div class="contact-item" onclick="callEmergency('112')">
+                                <span class="contact-name">경찰서</span>
+                                <span class="contact-number">112</span>
+                            </div>
+                            <div class="contact-item" onclick="callEmergency('1661-1661')">
+                                <span class="contact-name">재난안전상황실</span>
+                                <span class="contact-number">1661-1661</span>
+                            </div>
+                            <div class="contact-item" onclick="callEmergency('02-3423-5000')">
+                                <span class="contact-name">강남구청</span>
+                                <span class="contact-number">02-3423-5000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 버튼 그룹 -->
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="handleEmergencyCall()">
+                            긴급신고 119
+                        </button>
+                        <button class="btn btn-secondary" onclick="handleLocationShare()">
+                            위치공유
+                        </button>
+                        <button class="btn btn-outline" onclick="handleMoreInfo()">
+                            상세정보
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 스크립트 -->
+    <script src="../src/js/popup_protocol.js"></script>
+</body>
+</html>

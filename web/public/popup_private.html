@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CAREBOOL - 공공 보험 상세</title>
+    <link rel="stylesheet" href="../src/css/popup_private.css">
+</head>
+<body>
+    <!-- 로딩 화면 -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <nav class="nav">
+                <a href="#" class="logo">CARE<span class="highlight">BOOL</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">화재 상세</a></li>
+                    <li><a href="#">보험 상세</a></li>
+                    <li><a href="#">프로토콜</a></li>
+                    <li><a href="#">이용 안내</a></li>
+                </ul>
+                <div class="user-menu">
+                    <a href="#" class="logout-btn">로그인</a>
+                    <a href="#" class="logout-btn">회원가입</a>
+                    <a href="#" class="mypage-btn">마이페이지</a>
+                    <a href="#" class="zoom-in">확대</a>
+                    <a href="#" class="zoom-out">축소</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <h1 class="page-title">민간 보험 내역</h1>
+            <p class="page-description">
+                귀하가 가입하신 민간 보험 상품들을 한눈에 확인하고 관리하실 수 있습니다.
+            </p>
+
+            <!-- 안내 정보 -->
+            <div class="info-box">
+                <h3>📋 민간 보험 안내</h3>
+                <p>아래 표는 현재 가입하신 민간 보험 상품들입니다. 각 보험별 보장 내용과 보험료를 확인하시기 바랍니다.</p>
+            </div>
+            
+            <!-- 민간 보험 테이블 섹션 -->
+            <div class="section">
+                <table class="insurance-table">
+                    <thead>
+                        <tr>
+                            <th>보험사</th>
+                            <th>보험 이름</th>
+                            <th>유형</th>
+                            <th>보장금액</th>
+                            <th>보험료</th>
+                            <th>기간</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>삼성생명</td>
+                            <td>스마트건강보험</td>
+                            <td>건강</td>
+                            <td>최대 1억원</td>
+                            <td>월 45,000원</td>
+                            <td>10년 만기</td>
+                        </tr>
+                        <tr>
+                            <td>메리츠화재</td>
+                            <td>실속실손보험</td>
+                            <td>실손</td>
+                            <td>최대 5천만원</td>
+                            <td>월 32,000원</td>
+                            <td>연 단위 갱신</td>
+                        </tr>
+                        <tr>
+                            <td>DB손해보험</td>
+                            <td>자녀안심보험</td>
+                            <td>어린이</td>
+                            <td>최대 8천만원</td>
+                            <td>월 27,000원</td>
+                            <td>20년 만기</td>
+                        </tr>
+                        <tr>
+                            <td>한화생명</td>
+                            <td>내생애건강보험</td>
+                            <td>건강</td>
+                            <td>최대 7천만원</td>
+                            <td>월 36,000원</td>
+                            <td>15년 만기</td>
+                        </tr>
+                        <tr>
+                            <td>현대해상</td>
+                            <td>굿앤굿어린이보험</td>
+                            <td>어린이</td>
+                            <td>최대 9천만원</td>
+                            <td>월 31,000원</td>
+                            <td>20년 만기</td>
+                        </tr>
+                        <tr>
+                            <td>교보생명</td>
+                            <td>라이프플래닛저축보험</td>
+                            <td>저축</td>
+                            <td>최대 2억원</td>
+                            <td>월 60,000원</td>
+                            <td>30년 만기</td>
+                        </tr>
+                    </tbody>
+
+
+                </table>
+
+                <!-- 버튼 그룹 -->
+                <div class="button-group">
+                    <button class="btn" onclick="handleGoBack()">이전으로</button>
+                </div>
+            </div>
+
+            <!-- 푸터 -->
+            <div class="copyright">COPYRIGHT © 공모자들. ALL RIGHTS RESERVED.</div>
+        </div>
+    </div>
+
+    <!-- 스크립트 -->
+    <script src="../src/js/popup_private.js"></script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CAREBOOL - 맞춤 보험료 확인</title>
+    <link rel="stylesheet" href="../src/css/check_insurance.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <nav class="nav">
+                <a href="#" class="logo">CARE<span class="highlight">BOOL</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">화재 상세</a></li>
+                    <li><a href="#" class="active">보험 상세</a></li>
+                    <li><a href="#">프로토콜</a></li>
+                    <li><a href="#">이용 안내</a></li>
+                </ul>
+                <div class="user-menu">
+                    <a href="#">로그인</a>
+                    <a href="#">회원가입</a>
+                    <a href="#">마이페이지</a>
+                    <a href="#">확대</a>
+                    <a href="#">축소</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <!-- 탭 메뉴 -->
+            <div class="tab-container">
+                <button class="tab" onclick="switchTab(0)">공공보험</button>
+                <button class="tab" onclick="switchTab(1)">내 보험료 계산</button>
+                <button class="tab active" onclick="switchTab(2)">맞춤 보험료 확인</button>
+            </div>
+
+            <!-- 컨텐츠 패널 -->
+            <div class="content-panel">
+                <!-- 페이지 제목 -->
+                <h1 class="page-title">맞춤 보험료 찾기</h1>
+
+                <div class="insurance-finder-container">
+                    <!-- 입력 폼 섹션 -->
+                    <div class="form-section">
+                        <h2 class="form-title">보험료 관련 정보 입력하기</h2>
+                        
+                        <div class="form-group">
+                            <label class="form-label"><span class="required">*</span> 나이</label>
+                            <input type="number" class="form-input" id="age" placeholder="나이를 입력하세요" value="35">
+                            <div class="form-note">
+                                * 만 나이(현재 기준)로 숫자만 입력해주세요.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"><span class="required">*</span> 거주 지역</label>
+                            <input type="text" class="form-input" id="region" placeholder="거주 지역을 입력하세요" value="서울시">
+                            <div class="form-note">
+                                * 주소는 주민등록상 실제 거주지 기준으로 입력해주세요.<br>
+                                * 예) 서울시 강남구
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"><span class="required">*</span> 보장 희망 항목</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="all" name="insurance_item" value="all" checked>
+                                    <label for="all">건강</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="fire" name="insurance_item" value="fire">
+                                    <label for="fire">재난</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="fire2" name="insurance_item" value="fire">
+                                    <label for="fire2">화재</label>
+                                </div>
+                            </div>
+                            <div class="form-note">
+                                * 해당되는 보장 항목을 선택해주세요.<br>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"><span class="required">*</span> 월 납입 보험료(만원)</label>
+                            <input type="text" class="form-input" id="monthly_payment" placeholder="보험료 관련 (만원)" value="20만원">
+                            <div class="form-note">
+                                * 보험료는 만원 단위로 입력해주세요.<br>
+                                * 예) 2만 5천원 → 25000
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"><span class="required">*</span> 보험 기간(년)</label>
+                            <input type="number" class="form-input" id="period" placeholder="보험 기간을 입력하세요" value="10">
+                            <div class="form-note">
+                                * 보험기간은 숫자(년 단위)로 입력해주세요.<br>
+                                * 보험기간에 따라 보험료 및 보장 내용이 달라질 수 있습니다.
+                            </div>
+                        </div>
+
+                        <button class="search-btn" onclick="searchInsurance()">보험 추천 받기</button>
+                    </div>
+
+                    <!-- 결과 섹션 -->
+                    <div class="results-section">
+                        <h2 class="results-title">000 님을 위한 맞춤형 보험 안내입니다.</h2>
+                        
+                        <div class="insurance-grid">
+                            <!-- 메리츠화재 어린이 보험 -->
+                            <div class="insurance-card recommended">
+                                <div class="insurance-header">
+                                    <div>
+                                        <div class="insurance-name">메리츠화재 어린이 보험</div>
+                                        <div class="insurance-company">메리츠화재</div>
+                                    </div>
+                                    <div class="recommended-badge">추천</div>
+                                </div>
+                                <div class="insurance-description">
+                                    차가 있는 공중, 차녀 청학 및 사고에 대하여 수 안는 종합 보험 상품입니다.
+                                </div>
+                                <div class="insurance-features">
+                                    <div class="feature-item">내 전과 가까운구 헤택, 책임, 삭의 등급로부터 보호하며 남비 구체적다</div>
+                                </div>
+                                <div class="insurance-footer">
+                                    <div class="insurance-price">월 24,000원</div>
+                                    <button class="detail-btn">상세보기</button>
+                                </div>
+                            </div>
+
+                            <!-- 현대해상 화재보험 -->
+                            <div class="insurance-card">
+                                <div class="insurance-header">
+                                    <div>
+                                        <div class="insurance-name">현대해상 화재보험</div>
+                                        <div class="insurance-company">현대해상</div>
+                                    </div>
+                                </div>
+                                <div class="insurance-description">
+                                    화재 발생 시 전반적 재산 손실에 대한 보장을 받으시며, 임시 거주비도 지원합니다.
+                                </div>
+                                <div class="insurance-features">
+                                    <div class="feature-item">내 최고 가까운구 헤택, 책임, 삭의 등급로부터 보호하며 남비 구체적다</div>
+                                </div>
+                                <div class="insurance-footer">
+                                    <div class="insurance-price">월 16,000원</div>
+                                    <button class="detail-btn">상세보기</button>
+                                </div>
+                            </div>
+
+                            <!-- DB손해보험 종합재산보험 -->
+                            <div class="insurance-card">
+                                <div class="insurance-header">
+                                    <div>
+                                        <div class="insurance-name">DB손해보험 종합재산보험</div>
+                                        <div class="insurance-company">DB손해보험</div>
+                                    </div>
+                                </div>
+                                <div class="insurance-description">
+                                    화재뿐 아니라 도난, 자연재해에서 보호하는 종합 재산 보장 상품입니다.
+                                </div>
+                                <div class="insurance-features">
+                                    <div class="feature-item">내 최고 가까운구 헤택, 책임, 삭의 등급로부터 보호하며 남비 구체적다</div>
+                                </div>
+                                <div class="insurance-footer">
+                                    <div class="insurance-price">월 18,500원</div>
+                                    <button class="detail-btn">상세보기</button>
+                                </div>
+                            </div>
+
+                            <!-- KB손해보험 화재보험 -->
+                            <div class="insurance-card">
+                                <div class="insurance-header">
+                                    <div>
+                                        <div class="insurance-name">KB손해보험 화재보험</div>
+                                        <div class="insurance-company">KB손해보험</div>
+                                    </div>
+                                </div>
+                                <div class="insurance-description">
+                                    주택, 상가, 공장 등 다양한 건물 유형에 맞는 화재 및 자연재해 보장을 제공합니다.
+                                </div>
+                                <div class="insurance-features">
+                                    <div class="feature-item">가정 내 화재 사고를 위해 피해를 보완하며, 아동 피해 배상까지 포함합니다.</div>
+                                </div>
+                                <div class="insurance-footer">
+                                    <div class="insurance-price">월 22,000원</div>
+                                    <button class="detail-btn">상세보기</button>
+                                </div>
+                            </div>
+
+                            <!-- 한화손해보험 가정용 화재보험 -->
+                            <div class="insurance-card">
+                                <div class="insurance-header">
+                                    <div>
+                                        <div class="insurance-name">한화손해보험 가정용 화재보험</div>
+                                        <div class="insurance-company">한화손해보험</div>
+                                    </div>
+                                </div>
+                                <div class="insurance-description">
+                                    가정 내 화재 사고를 위해 피해를 보완하며 아동 피해 배상까지 포함하는 상품입니다.
+                                </div>
+                                <div class="insurance-features">
+                                    <div class="feature-item">가정 내 화재 사고를 위해 피해를 보완하며, 아동 피해 배상까지 포함합니다.</div>
+                                </div>
+                                <div class="insurance-footer">
+                                    <div class="insurance-price">월 19,800원</div>
+                                    <button class="detail-btn">상세보기</button>
+                                </div>
+                            </div>
+
+                            <!-- 추가 더미 카드들 (스크롤 테스트용) -->
+                            <div class="insurance-card">
+                                <div class="insurance-header">
+                                    <div>
+                                        <div class="insurance-name">삼성화재 일반보험</div>
+                                        <div class="insurance-company">삼성화재</div>
+                                    </div>
+                                </div>
+                                <div class="insurance-description">
+                                    기본적인 화재 및 재해 보장을 제공하는 경제적인 보험 상품입니다.
+                                </div>
+                                <div class="insurance-features">
+                                    <div class="feature-item">기본적인 화재 보장과 추가적인 재해 보상을 포함합니다.</div>
+                                </div>
+                                <div class="insurance-footer">
+                                    <div class="insurance-price">월 15,000원</div>
+                                    <button class="detail-btn">상세보기</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="copyright">COPYRIGHT © 공모자들. ALL RIGHTS RESERVED.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 스크립트 -->
+    <script src="../src/js/check_insurance.js"></script>
+</body>
+</html>

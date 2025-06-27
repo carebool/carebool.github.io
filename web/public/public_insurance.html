@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CAREBOOL - 공공보험</title>
+    <link rel="stylesheet" href="../src/css/public_insurance.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <nav class="nav">
+                <a href="#" class="logo">CARE<span class="highlight">BOOL</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">화재 상세</a></li>
+                    <li><a href="#" class="active">보험 상세</a></li>
+                    <li><a href="#">프로토콜</a></li>
+                    <li><a href="#">이용 안내</a></li>
+                </ul>
+                <div class="user-menu">
+                    <a href="#">로그인</a>
+                    <a href="#">회원가입</a>
+                    <a href="#">마이페이지</a>
+                    <a href="#">확대</a>
+                    <a href="#">축소</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <!-- 탭 메뉴 -->
+            <div class="tab-container">
+                <button class="tab active" onclick="switchTab(0)">공공보험</button>
+                <button class="tab" onclick="switchTab(1)">내 보험료 계산</button>
+                <button class="tab" onclick="switchTab(2)">맞춤 보험료 확인</button>
+            </div>
+
+            <!-- 컨텐츠 패널 -->
+            <div class="content-panel">
+                <!-- 페이지 제목 -->
+                <h1 class="page-title">시민안전보험이란?</h1>
+
+                <!-- 정보 박스 -->
+                <div class="info-box">
+                    재난·사고로 인한 시민 피해 보상을 위해 지방자치단체가 보험사 등과 체결한 단체보험으로,
+                    <br>
+                    보험료를 관할지자체가 부담함으로써 일상생활 중 예기치 못한 사고들을 당했을 경우 피해자가 일상으로 복귀할 수 있도록 지원하는 제도입니다.
+                    <br><br>
+                    <span class="highlight">※ 해당 지자체 주민은 별도 신청 없이 자동 가입됩니다.</span>
+                    <br>
+                    <span class="highlight">※ 지방자치단체별로 보장항목 및 보장규모에 차이가 있으니 주소지의 안전보험 가입정보를 꼭 확인하세요!</span>
+                </div>
+
+                <!-- 보험금 청구 절차 -->
+                <div class="process-section">
+                    <h2 class="process-title">보험금 청구 절차</h2>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <h3>사고발생</h3>
+                            <p>피보험자 사고발생</p>
+                        </div>
+                        <div class="process-arrow"></div>
+                        <div class="process-step">
+                            <h3>보험조회</h3>
+                            <p>시민안전보험 항목 확인</p>
+                        </div>
+                        <div class="process-arrow"></div>
+                        <div class="process-step">
+                            <h3>서류확인</h3>
+                            <p>필요 서류 확인</p>
+                        </div>
+                        <div class="process-arrow"></div>
+                        <div class="process-step">
+                            <h3>보험신청</h3>
+                            <p>청구서 및 서류 접수</p>
+                        </div>
+                        <div class="process-arrow"></div>
+                        <div class="process-step">
+                            <h3>서류심사</h3>
+                            <p>심사 내용 검토</p>
+                        </div>
+                        <div class="process-arrow"></div>
+                        <div class="process-step">
+                            <h3>보험지급</h3>
+                            <p>보험금 계좌 지급</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 시민안전보험 조회 -->
+                <div class="search-section">
+                    <h2 class="search-title">시민안전보험 조회</h2>
+                    <p style="text-align: center; margin-bottom: 20px; font-size: 14px; color: #666;">각 지역에서 제공하는 보험 정보를 조회합니다.</p>
+                    
+                    <div class="search-controls">
+                        <select class="search-select" id="regionSelect">
+                            <option>지역을 선택하세요</option>
+                            <option value="seoul">서울특별시</option>
+                            <option value="busan">부산광역시</option>
+                            <option value="daegu">대구광역시</option>
+                            <option value="incheon">인천광역시</option>
+                            <option value="gwangju">광주광역시</option>
+                            <option value="daejeon">대전광역시</option>
+                            <option value="ulsan">울산광역시</option>
+                            <option value="gyeonggi">경기도</option>
+                        </select>
+                        <select class="search-select" id="yearSelect">
+                            <option>연도를 선택하세요</option>
+                            <option value="2025">2025년</option>
+                            <option value="2024">2024년</option>
+                            <option value="2023">2023년</option>
+                        </select>
+                    </div>
+
+                    <div class="map-container">
+                        <div class="map-area">
+                            <div class="korea-map">
+                                <div class="map-regions"></div>
+                                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 16px; color: #666;">
+                                    📍 대한민국 지도
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="results-area">
+                            <div class="results-header">전체 조회</div>
+                            <div class="results-list" id="resultsList">
+                                <div class="result-item">
+                                    <div class="result-location">서울특별시</div>
+                                    <div class="result-period">운영기간: 2025-01-01 ~ 2025-12-31</div>
+                                    <div class="result-contact">연락처: 02-2133-8034</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-location">부산광역시</div>
+                                    <div class="result-period">운영기간: 2025-01-01 ~ 2025-12-31</div>
+                                    <div class="result-contact">연락처: 051-888-1234</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-location">대구광역시</div>
+                                    <div class="result-period">운영기간: 2025-01-01 ~ 2025-12-31</div>
+                                    <div class="result-contact">연락처: 053-803-1234</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-location">인천광역시</div>
+                                    <div class="result-period">운영기간: 2025-01-01 ~ 2025-12-31</div>
+                                    <div class="result-contact">연락처: 032-440-1234</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="copyright">COPYRIGHT © 공모자들. ALL RIGHTS RESERVED.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 스크립트 -->
+    <script src="../src/js/public_insurance.js"></script>
+</body>
+</html>

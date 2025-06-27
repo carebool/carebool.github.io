@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CAREBOOL - 마이페이지</title>
+    <link rel="stylesheet" href="../src/css/mypage.css">
+</head>
+<body>
+    <!-- 로딩 화면 -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <nav class="nav">
+                <a href="#" class="logo">CARE<span class="highlight">BOOL</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">화재 상세</a></li>
+                    <li><a href="#">보험 상세</a></li>
+                    <li><a href="#">프로토콜</a></li>
+                    <li><a href="#">이용 안내</a></li>
+                </ul>
+                <div class="user-menu">
+                    <a href="#" class="logout-btn">로그인</a>
+                    <a href="#" class="logout-btn">회원가입</a>
+                    <a href="#" class="mypage-btn">마이페이지</a>
+                    <a href="#" class="zoom-in">확대</a>
+                    <a href="#" class="zoom-out">축소</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <h1 class="page-title">마이 페이지</h1>
+            <p class="page-description">
+                국민에게 열린 정보를 제공하는 CAREBOOL에서 보유한 화재 관련 보험 데이터를 자유롭게 이용할 수 있습니다.
+            </p>
+            
+            <!-- 개인정보 섹션 -->
+            <div class="section">
+                <h2 class="section-title">개인 정보</h2>
+                
+                <div class="profile-container">
+                    <!-- 프로필 이미지 -->
+                    <div class="profile-image">
+                        <svg class="profile-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+
+                    <!-- 정보 영역 -->
+                    <div class="profile-info">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">이름</span>
+                                <span class="info-value">홍길동</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">전화번호</span>
+                                <span class="info-value">010-0000-0000</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">아이디</span>
+                                <span class="info-value">honggil</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">이메일</span>
+                                <span class="info-value">honggil@gmail.com</span>
+                            </div>
+                            <div class="info-item" style="grid-column: 1 / -1;">
+                                <span class="info-label">주소</span>
+                                <span class="info-value">서울특별시 은평구 진관동 000아파트 1001동 101호</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 버튼 그룹 -->
+                <div class="button-group">
+                    <button class="btn" onclick="handleEditProfile()">개인 정보 수정</button>
+                    <button class="btn" onclick="handleGoToMain()">메인 페이지로</button>
+                </div>
+            </div>
+
+            <!-- 개인정보 보안 정책 섹션 -->
+            <div class="section">
+                <h2 class="section-title">개인 재난 보험 정보</h2>
+                
+                <div class="policy-section">
+                    <!-- 공공 보험 -->
+                    <div class="policy-item">
+                        <div class="policy-content">
+                            <h3 class="policy-title">공공 보험</h3>
+                            <p class="policy-description">
+                                공공보험은 여러분의 건강을 지키기 위한 필수적인 서비스입니다. 자세히 보기에서 공공 보험 세부 정보를 확인하세요.
+                            </p>
+                        </div>
+                        <button class="policy-btn" onclick="handleDetailView('공공 보험')">자세히 보기</button>
+                    </div>
+
+                    <!-- 민간 보험 -->
+                    <div class="policy-item">
+                        <div class="policy-content">
+                            <h3 class="policy-title">민간 보험</h3>
+                            <p class="policy-description">
+                                민간보험은 여러분의 추가적인 건강 보호를 위한 중요한 서비스입니다. 자세히 보기에서 민간보험 세부 정보를 확인하세요.
+                            </p>
+                        </div>
+                        <button class="policy-btn" onclick="handleDetailView('민간 보험')">자세히 보기</button>
+                    </div>
+
+                    <!-- 재난 정보 -->
+                    <div class="policy-item">
+                        <div class="policy-content">
+                            <h3 class="policy-title">재난 정보</h3>
+                            <p class="policy-description">
+                                과거 재난 기록은 여러분의 안전을 위한 중요한 참고 자료입니다. 자세히 보기에서 이전 재난 상황과 대응 방법을 확인하세요.
+                            </p>
+                        </div>
+                        <button class="policy-btn" onclick="handleDetailView('재난 정보')">자세히 보기</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 푸터 -->
+            <div class="copyright">COPYRIGHT © 공모자들. ALL RIGHTS RESERVED.</div>
+        </div>
+    </div>
+    
+    <!-- 스크립트 -->
+    <script src="../src/js/mypage.js"></script>
+</body>
+</html>

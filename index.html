@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CAREBOOL - 메인</title>
+    <link rel="stylesheet" href="./src/css/main.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <nav class="nav">
+                <a href="#" class="logo">CARE<span class="highlight">BOOL</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">화재 상세</a></li>
+                    <li><a href="#">보험 상세</a></li>
+                    <li><a href="#">프로토콜</a></li>
+                    <li><a href="#">이용 안내</a></li>
+                </ul>
+                <div class="user-menu">
+                    <a href="#" class="login-icon">로그인</a>
+                    <a href="#" class="signup-icon">회원가입</a>
+                    <a href="#" class="search-icon">마이페이지</a>
+                    <a href="#" class="search-icon">확대</a> <!-- 확대 돋보기 아이콘 -->
+                    <a href="#" class="search-icon">축소</a> <!-- 축소 돋보기 아이콘 -->
+                </div>
+            </nav>
+        </header>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <div class="dashboard-grid">
+                <!-- 지도 영역 -->
+                <div class="map-container">
+                    <div class="map-image">
+                        <div class="map-overlay">
+                            <div class="map-text">지도</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 통계 패널 -->
+                <div class="stats-panel">
+                    <div class="stat-cards">
+                        <div class="stat-card">
+                            <span class="stat-icon electric-card">⚡</span>
+                            <div class="stat-title">전기 누전</div>
+                            <div class="stat-value">35%</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <span class="stat-icon fire-card">🔥</span>
+                            <div class="stat-title">화재 위험지수</div>
+                            <div class="stat-value">높음</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <span class="stat-icon analysis-card">📊</span>
+                            <div class="stat-title">화재 가능성</div>
+                            <div class="stat-value">1.7배</div>
+                        </div>
+                    </div>
+
+                    <!-- 알림 패널 -->
+                    <div class="alert-panel">
+                        <h3 class="alert-title">예기치 못한 화재,<br>당신의 삶을 지키는 첫걸음</h3>
+                        <p class="alert-subtitle">화재는 예고 없이 찾아옵니다.<br>지금 화재 보험으로 미리 대비하세요.</p>
+                        <div class="alert-buttons">
+                            <a href="#" class="alert-btn btn-primary">보험료 계산하기</a>
+                            <a href="#" class="alert-btn btn-secondary">나에게 맞는 보험 찾기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 하단 섹션 -->
+            <div class="bottom-section">
+                <!-- 뉴스 패널 -->
+                <div class="news-panel">
+                    <div class="news-header">
+                        <h3 class="news-title">News</h3>
+                        <a href="#" class="news-more">더보기</a>
+                    </div>
+                    
+                    <div class="news-item">
+                        <div class="news-text">"서울 인근 고속 4.3 지진 발생...재산 피해는 없어"</div>
+                    </div>
+                    
+                    <div class="news-item">
+                        <div class="news-text">"정부, 대형 대학 전국 대응 체계 정립 강화"</div>
+                    </div>
+                    
+                    <div class="news-item">
+                        <div class="news-text">"비상 김성재, 집에 가고 싶음"</div>
+                    </div>
+                </div>
+
+                <!-- 기부 패널 -->
+                <div class="donation-panel">
+                    <div class="donation-image">
+                        <img src="./src/img/donation.png" alt="기부 이미지">
+                    </div>
+                    <div class="donation-title">기부펀드하기</div>
+                </div>
+            </div>
+
+            <div class="copyright">COPYRIGHT © 공모자들. ALL RIGHTS RESERVED.</div>
+        </div>
+    </div>
+    
+    <!-- 스크립트 -->
+    <script src="./src/js/main.js"></script>
+</body>
+</html>
